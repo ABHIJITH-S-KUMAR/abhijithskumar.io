@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>To-Do App</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100">
+
+    <div class="container-fluid d-flex h-100">
+        
+        <aside class="sidebar bg-purple-600 text-white p-4 w-1/4 flex-none">
+            <h2 class="text-center mb-4">Do-it</h2>
+            <img src="img.jpg" alt="Profile" class="profile-img w-20 h-20 rounded-full object-cover mb-4 mx-auto shadow-lg">
+            <p class="user-name text-center text-xl mb-4">ABHIJITH S KUMAR</p>
+            <nav>
+                <ul class="list-none">
+                    <li><button class="nav-btn bg-transparent text-white border-none p-2 w-full text-left" id="tasks-btn">Today Tasks</button></li>
+                    <li>
+                        <span class="color-circle personal inline-block w-2.5 h-2.5 rounded-full mr-2 bg-red-400"></span>Personal
+                        <ul class="task-list personal-tasks">
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="color-circle freelance inline-block w-2.5 h-2.5 rounded-full mr-2 bg-blue-400"></span>Freelance
+                        <ul class="task-list freelance-tasks">
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="color-circle work inline-block w-2.5 h-2.5 rounded-full mr-2 bg-green-400"></span>Work
+                        <ul class="task-list work-tasks">
+                            
+                        </ul>
+                    </li>
+                    <li id="add-filter" class="cursor-pointer text-purple-300">
+                        + Add Filter
+                        <div id="filter-popup" class="hidden mt-2">
+                            <input type="text" id="new-filter-name" placeholder="Enter filter name" class="p-2 mb-2 w-full rounded-md border border-gray-300">
+                            <button id="add-filter-submit" class="bg-purple-600 text-white p-2 rounded-md w-full">Add</button>
+                        </div>
+                    </li>
+                    <li><button class="nav-btn bg-transparent text-white border-none p-2 w-full text-left" id="scheduled-tasks-btn">Scheduled Tasks</button></li>
+                    <li><button class="nav-btn bg-transparent text-white border-none p-2 w-full text-left" id="settings-btn">Settings</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        
+        <main class="main-content w-3/4 p-4 overflow-auto">
+            
+            <section class="tasks-section" id="tasks-section">
+                <h1 class="text-3xl font-bold mb-4">Today's Main Focus</h1>
+                <h2 class="text-xl mb-4">Design Team Meeting</h2>
+                <div class="task-input flex gap-4 mb-4">
+                    <input id="task-input" type="text" placeholder="What's your next task?" class="p-2 w-full rounded-md border border-gray-300">
+                    <input id="task-date" type="date" class="p-2 rounded-md border border-gray-300">
+                    <input id="task-time" type="time" class="p-2 rounded-md border border-gray-300">
+                    <select id="task-category" class="p-2 rounded-md border border-gray-300">
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="freelance">Freelance</option>
+                    </select>
+                    <button id="add-task-btn" class="bg-purple-600 text-white p-2 rounded-md">Add Task</button>
+                </div>
+                <ul class="task-list" id="task-list">
+                    
+                </ul>
+            </section>
+
+            
+            <section class="scheduled-tasks-section hidden" id="scheduled-tasks-section">
+                <h1 class="text-3xl font-bold mb-4">Scheduled Tasks</h1>
+                <ul class="scheduled-task-list" id="scheduled-task-list">
+                    
+                </ul>
+            </section>
+
+            
+            <section class="settings-section hidden" id="settings-section">
+                <h1 class="text-3xl font-bold mb-4">Settings</h1>
+                <div class="settings-item flex items-center justify-between p-3 mb-4 bg-white rounded-md shadow-md">
+                    <i class="fas fa-user-circle text-purple-600 text-2xl mr-4"></i>
+                    <span>Edit Profile</span>
+                </div>
+                <div class="settings-item flex items-center justify-between p-3 mb-4 bg-white rounded-md shadow-md">
+                    <i class="fas fa-key text-purple-600 text-2xl mr-4"></i>
+                    <span>Change Password</span>
+                </div>
+                <div class="settings-item flex items-center justify-between p-3 mb-4 bg-white rounded-md shadow-md">
+                    <i class="fas fa-shield-alt text-purple-600 text-2xl mr-4"></i>
+                    <span>Privacy</span>
+                </div>
+                <div class="settings-item flex items-center justify-between p-3 mb-4 bg-white rounded-md shadow-md">
+                    <i class="fas fa-bell text-purple-600 text-2xl mr-4"></i>
+                    <span>Notifications</span>
+                    <input type="checkbox" id="notifications-toggle">
+                </div>
+                <div class="settings-item flex items-center justify-between p-3 mb-4 bg-white rounded-md shadow-md">
+                    <i class="fas fa-tasks text-purple-600 text-2xl mr-4"></i>
+                    <span>Task Notifications</span>
+                    <input type="checkbox" id="task-notifications-toggle">
+                </div>
+                <div class="settings-item flex items-center justify-between p-3 mb-4 bg-white rounded-md shadow-md">
+                    <i class="fas fa-language text-purple-600 text-2xl mr-4"></i>
+                    <span>Language</span>
+                    <select id="language-select" class="p-2 rounded-md border border-gray-300">
+                        <option value="en">English</option>
+                        <option value="fr">French</option>
+                        <option value="es">Spanish</option>
+                    </select>
+                </div>
+                <div class="settings-item flex items-center justify-between p-3 mb-4 bg-white rounded-md shadow-md">
+                    <i class="fas fa-globe text-purple-600 text-2xl mr-4"></i>
+                    <span>Country</span>
+                    <select id="country-select" class="p-2 rounded-md border border-gray-300">
+                        <option value="us">United States</option>
+                        <option value="fr">France</option>
+                        <option value="es">Spain</option>
+                    </select>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
